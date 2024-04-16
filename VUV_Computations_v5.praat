@@ -25,7 +25,7 @@ if voicingThreshold < 0 or voicingThreshold > 1
     exitScript: "Invalid voicing threshold. Please run the script again with a value between 0 and 1."
 endif
 
-Create Strings as file list: "list", "'directory1$'\*.wav"
+Create Strings as file list: "list", "'directory1$'/*.wav"
 
 numberOfFiles = Get number of strings
 
@@ -33,9 +33,9 @@ for i from 1 to numberOfFiles
 	selectObject: "Strings list"
    	fileName$ = Get string: i
 
-	Read from file: "'directory1$'\'fileName$'"
+	Read from file: "'directory1$'/'fileName$'"
 	name$ = selected$ ("Sound")
-	Read from file: "'directory1$'\'name$'.TextGrid"
+	Read from file: "'directory1$'/'name$'.TextGrid"
 	selectObject: "Sound 'name$'"
 	Filter (pass Hann band): 0, 500, 20
 	soundFiltered = selected ("Sound")
@@ -60,7 +60,7 @@ for i from 1 to numberOfFiles
 	Merge
 	
 	## Write filename. use voicingThreshold
-	Write to text file: "'directory1$'\'name$'_VUV_'string$ (voicingThreshold)'.TextGrid"
+	Write to text file: "'directory1$'/'name$'_VUV_'string$ (voicingThreshold)'.TextGrid"
 	select all
 	minusObject: "Strings list"
 	Remove
